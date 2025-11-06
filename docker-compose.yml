@@ -1,0 +1,105 @@
+services:
+  # ---------- PHP (multiple versions for comparison) ----------
+  php83:
+    image: php:8.3-cli
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+
+  php81:
+    image: php:8.1-cli
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+
+  php74:
+    image: php:7.4-cli
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+
+  # ---------- Bash ----------
+  bash:
+    image: bash:5
+    working_dir: /usr/src/app
+    entrypoint: ["bash"]
+    volumes:
+      - ./:/usr/src/app
+
+  # ---------- C++ ----------
+  cpp:
+    image: gcc:latest
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+
+  # ---------- C# (.NET SDK) ----------
+  csharp:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+
+  # ---------- Go ----------
+  go:
+    image: golang:1.22
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+
+  # ---------- Java ----------
+  java:
+    image: eclipse-temurin:21-jdk
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+
+  # ---------- JavaScript / NodeJS ----------
+  javascript:
+    image: node:22
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+
+  nodejs:
+    image: node:22
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+
+  # ---------- Python ----------
+  python:
+    image: python:3.12
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+
+  # ---------- Rust ----------
+  rust:
+    image: rust:1.81
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+
+  # ---------- MySQL (server for SQL experiments) ----------
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: rigor
+      MYSQL_USER: rigor
+      MYSQL_PASSWORD: rigor
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # ---------- Generic SQL via SQLite (no server required) ----------
+  sql:
+    image: nouchka/sqlite3
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+
+volumes:
+  mysql_data:
